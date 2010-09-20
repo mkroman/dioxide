@@ -17,7 +17,7 @@ module Dioxide
 
     def initialize host = DefaultHost, port = DefaultPort
       @host, @port = host, port
-      @tracker = Tracker.new
+      @adapter = Adapter.new
     end
 
     def start

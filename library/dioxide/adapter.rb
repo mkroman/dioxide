@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Dioxide
-  class Tracker
+  class Adapter
     def initialize
       # …
     end
@@ -10,19 +10,13 @@ module Dioxide
       request = Request.new env
        method = File.basename(request.path).gsub /[^a-zA-Z0-9]+/, ''
 
-       if respond_to? method
-         __send__ method, request
+       if @tracker.respond_to? method
+         @tracker.__send__ method, request
        else
          Response.new do |response|
-           response.error "invalid request"
+           response.error 'invalid request'
          end.finish
        end
-     end
-
-     def announce request
-       Response.new do |request|
-         request.warn "tracker not functional"
-       end.finish
      end
   end
 end
