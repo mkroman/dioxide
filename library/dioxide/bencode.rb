@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+# TODO make this an includable module
+
 class Array;      def bencode; [?l, map(&:bencode), ?e].join end end
 class String;     def bencode; [length, ?:, self].join end end
 class Fixnum;     def bencode; [?i, self, ?e].join end end
