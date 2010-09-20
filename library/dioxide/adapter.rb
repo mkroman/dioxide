@@ -3,7 +3,7 @@
 module Dioxide
   class Adapter
     def initialize
-      # …
+      @tracker = Tracker.new
     end
 
     def call env
@@ -11,7 +11,7 @@ module Dioxide
        method = File.basename(request.path).gsub /[^a-zA-Z0-9]+/, ''
 
        if @tracker.respond_to? method
-         @tracker.__send__ method, request
+         @tracker.__send__(method, request).finish
        else
          Response.new do |response|
            response.error 'invalid request'
