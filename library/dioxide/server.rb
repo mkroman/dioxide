@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-require 'rack'
-require 'rack/builder'
-
 module Dioxide
   class Server
     attr_accessor :host, :port
