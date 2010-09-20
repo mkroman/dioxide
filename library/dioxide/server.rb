@@ -27,7 +27,7 @@ module Dioxide
         use Rack::ShowExceptions
       end
 
-      Rack::Handler::Thin.run @tracker, Host: @host, Port: @port do |server|
+      Rack::Handler::Thin.run @adapter, Host: @host, Port: @port do |server|
         # …
       end
     end
