@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'dioxide/server'
 require 'dioxide/bencode'
 
 module Dioxide
