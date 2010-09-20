@@ -2,6 +2,7 @@
 
 require 'rack'
 require 'dioxide/server'
+require 'dioxide/tracker'
 require 'dioxide/bencode'
 require 'dioxide/request'
 require 'dioxide/response'

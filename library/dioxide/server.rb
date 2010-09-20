@@ -5,7 +5,7 @@ module Dioxide
     attr_accessor :host, :port
 
     DefaultHost = '0.0.0.0'
-    DefaultPort = 3000
+    DefaultPort = 6969
 
     class << self
       def start *args
@@ -17,12 +17,19 @@ module Dioxide
 
     def initialize host = DefaultHost, port = DefaultPort
       @host, @port = host, port
+      @tracker = Tracker.new
     end
 
     def start
-      puts "==> Starting Dioxide ..."
-      puts "!!> Entering empty run loop ..."
-      loop do; end
+      app = Rack::Builder.new do
+        use Rack::CommonLogger
+        use Rack::ShowStatus
+        use Rack::ShowExceptions
+      end
+
+      Rack::Handler::Thin.run @tracker, Host: @host, Port: @port do |server|
+        # …
+      end
     end
 
   end
