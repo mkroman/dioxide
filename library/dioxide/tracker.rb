@@ -7,15 +7,16 @@ module Dioxide
     end
 
     def announce request
-      respond do |response|
-        response.warn 'dioxide is still under development'
+      respond do
+        
       end
     end
 
   private
-    def respond
+    def respond &block
       Response.new.tap do |response|
-        yield response
+        body = response.instance_eval &block
+        response.body = body unless response.body
       end
     end
   end
